@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_menu_inicio"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_categorias"
+            android:title="Categorias" />
+
+    </group>
+
+  <!--  <item android:title="">
+        <menu>
+                        <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Categorias" />
+        </menu>
+    </item>
+ -->
+</menu>
