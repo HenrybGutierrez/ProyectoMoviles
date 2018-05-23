@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "607065667347",
+    "firebase_url": "https://proyecto-moviles-b471f.firebaseio.com",
+    "project_id": "proyecto-moviles-b471f",
+    "storage_bucket": "proyecto-moviles-b471f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607065667347:android:0fdba44306aeb7f2",
+        "android_client_info": {
+          "package_name": "com.proyecto.univalle.proyectomoviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607065667347-pbkcvpv89iam1v0f2o7iq23u2e1aqkuq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.proyecto.univalle.proyectomoviles",
+            "certificate_hash": "0f2e86fa05170ce77374c32ac269a4dbb5179af2"
+          }
+        },
+        {
+          "client_id": "607065667347-eau2uhnv5ib824e22dm1r6q3i6q91d3u.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "607065667347-eau2uhnv5ib824e22dm1r6q3i6q91d3u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjBYb0JyZhxVS5HOzSkNW70DoHLnkkEZk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607065667347-eau2uhnv5ib824e22dm1r6q3i6q91d3u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
