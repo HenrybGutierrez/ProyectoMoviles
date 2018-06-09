@@ -1,5 +1,7 @@
 package com.proyecto.univalle.proyectomoviles;
 
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,9 +14,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView lblUser;
+    private TextView lblCorreo;
+    GoogleMap gp;
+    FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +36,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +45,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        lblUser=findViewById(R.id.lblUser);
+        lblCorreo=findViewById(R.id.lblCorreo);
+
+        Bundle recibo = getIntent().getExtras();
+        if(recibo!=null){
+            String nombre=recibo.getString("nombre");
+            String correo=recibo.getString("correo");
+            String foto=recibo.getString("foto");
+            Toast.makeText(this,"Hola, "+nombre,Toast.LENGTH_SHORT).show();
+            //lblUser.setText(nombre);
+            //lblCorreo.setText(correo);
+        }
+
+        crearFragmentMapa();
     }
 
     @Override
@@ -53,13 +73,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -67,10 +80,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -80,11 +89,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-       /* if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
+         if (id == R.id.nav_inicio) {
+             Toast.makeText(this,"Inicio",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_categorias) {
+             Toast.makeText(this,"Categorias",Toast.LENGTH_SHORT).show();
+        } /*else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
@@ -97,5 +106,23 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void verPerfil(View g){
+        Intent ir = new Intent(MainActivity.this,PerfilActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(ir);
+    }
+
+    public void crearFragmentMapa() {
+
+        if(gp instanceof GoogleMap){
+
+        }else{
+            gp = new GoogleMap();
+            android.support.v4.app.FragmentTransaction transtion=getSupportFragmentManager().beginTransaction();
+            transtion.add(R.id.fragment,gp);
+            transtion.commit();
+        }
     }
 }
