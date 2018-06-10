@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <!--<group android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_inicio"
@@ -13,16 +13,44 @@
             android:id="@+id/nav_categorias"
             android:icon="@drawable/ic_menu_categorias"
             android:title="Categorias" />
+    </group>-->
 
-    </group>
-
-  <!--  <item android:title="">
+    <item android:title="Categorias">
         <menu>
-                        <item
-                android:id="@+id/nav_send"
+            <item
+                android:id="@+id/nav_droguerias"
                 android:icon="@drawable/ic_menu_categorias"
-                android:title="Categorias" />
+                android:title="Droguerias" />
+
+            <item
+                android:id="@+id/nav_servicio_publico"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Servicio Publico" />
+
+            <item
+                android:id="@+id/nav_empresas_transporte"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Empresas de Transporte" />
+
+            <item
+                android:id="@+id/nav_bancos"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Bancos" />
+
+            <item
+                android:id="@+id/nav_supermercados"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Supermercados" />
+
+            <item
+                android:id="@+id/nav_parques"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Parques" />
+
+            <item
+                android:id="@+id/nav_iglesias"
+                android:icon="@drawable/ic_menu_categorias"
+                android:title="Iglesias" />
         </menu>
     </item>
- -->
 </menu>
