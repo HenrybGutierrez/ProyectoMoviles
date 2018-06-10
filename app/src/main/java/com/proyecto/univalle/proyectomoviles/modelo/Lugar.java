@@ -6,9 +6,7 @@ public class Lugar {
     private String id;
     private String nombre;
     private String descripcion;
-
     private List<String>fotosurl;
-
     private double calificacion;
     private Subcategoria subcategoria;
     private List<String> email;
@@ -16,8 +14,14 @@ public class Lugar {
     private List<String> telefonos;
     private String horaabierto;
     private String horacerrado;
+    private String latitud;
+    private String longitud;
 
-    public Lugar(String id, String nombre, String descripcion, List<String> fotosurl, double calificacion, Subcategoria subcategoria, List<String> email, List<String> sitioweb, List<String> telefonos, String horaabierto, String horacerrado) {
+    public Lugar(){
+
+    }
+
+    public Lugar(String id, String nombre, String descripcion, List<String> fotosurl, double calificacion, Subcategoria subcategoria, List<String> email, List<String> sitioweb, List<String> telefonos, String horaabierto, String horacerrado, String latitud, String longitud) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -29,6 +33,24 @@ public class Lugar {
         this.telefonos = telefonos;
         this.horaabierto = horaabierto;
         this.horacerrado = horacerrado;
+        this.latitud=latitud;
+        this.longitud=longitud;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 
     public String getId() {
