@@ -28,6 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.proyecto.univalle.proyectomoviles.conexion.ConexionBD;
+
 public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
 
     private EditText txtusername, txtpassword;
@@ -38,6 +40,9 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleApiClient googleApiClient;
+
+    ConexionBD conexion;
+    SQLiteDatabase db;
 
     AccountManager manager;
 
@@ -51,6 +56,23 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         txtpassword = (EditText) findViewById(R.id.txtpassword);
         txtusername.setText("admin");
         txtpassword.setText("admin");
+
+        ///Conexion a BD para crearla o verificar que ya exista
+        conexion = new ConexionBD(this, "Proyecto", null, 1);
+        String DB_PATH = "/data/data/com.proyecto.univalle.proyectomoviles/databases/Proyecto";
+        try {
+            db = SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READONLY);
+            db.close();
+            //Toast.makeText(getApplication(), "Ya existe la BD", Toast.LENGTH_LONG).show();
+        } catch (SQLiteException e) {
+            //Si no existe la BD
+            db = conexion.getWritableDatabase();
+            if (conexion != null) {
+                Toast.makeText(getApplication(), "BD creada", Toast.LENGTH_LONG).show();
+
+
+            }
+        }
 
         ///Para el login a traves del API de Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
