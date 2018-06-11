@@ -8,7 +8,7 @@ public class Lugar {
     private String descripcion;
     private List<String>fotosurl;
     private double calificacion;
-    private Subcategoria subcategoria;
+    private Categoria categoria;
     private List<String> email;
     private List<String> sitioweb;
     private List<String> telefonos;
@@ -21,13 +21,13 @@ public class Lugar {
 
     }
 
-    public Lugar(String id, String nombre, String descripcion, List<String> fotosurl, double calificacion, Subcategoria subcategoria, List<String> email, List<String> sitioweb, List<String> telefonos, String horaabierto, String horacerrado, String latitud, String longitud) {
+    public Lugar(String id, String nombre, String descripcion, List<String> fotosurl, double calificacion, Categoria categoria, List<String> email, List<String> sitioweb, List<String> telefonos, String horaabierto, String horacerrado, String latitud, String longitud) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fotosurl = fotosurl;
         this.calificacion = calificacion;
-        this.subcategoria = subcategoria;
+        this.categoria = categoria;
         this.email = email;
         this.sitioweb = sitioweb;
         this.telefonos = telefonos;
@@ -93,12 +93,12 @@ public class Lugar {
         this.calificacion = calificacion;
     }
 
-    public Subcategoria getSubcategoria() {
-        return subcategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setSubcategoria(Subcategoria subcategoria) {
-        this.subcategoria = subcategoria;
+    public void setCategoria(Categoria subcategoria) {
+        this.categoria = categoria;
     }
 
     public List<String> getEmail() {
