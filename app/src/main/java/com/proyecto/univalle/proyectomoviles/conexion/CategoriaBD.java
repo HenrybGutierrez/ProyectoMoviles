@@ -27,7 +27,7 @@ public class CategoriaBD extends ConexionBD{
                 String nombre = fila.getString(1);
                 String descripcion = fila.getString(2);
 
-                c = new Categoria(id,nombre,descripcion,null);
+                c = new Categoria(id,nombre,descripcion);
             }while (fila.moveToNext());
 
         }
@@ -46,7 +46,7 @@ public class CategoriaBD extends ConexionBD{
                 String nombre = fila.getString(1);
                 String descripcion = fila.getString(2);
 
-                c = new Categoria(id,nombre,descripcion,null);
+                c = new Categoria(id,nombre,descripcion);
 
 
         }

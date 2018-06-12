@@ -46,7 +46,9 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyD_OcYQziWqsUJ4nPZbi7J3wWRjK5kI32E" />
 
-        <activity android:name=".InfoCategoriasActivity"></activity>
+        <activity android:name=".InfoCategoriasActivity" />
+        <activity android:name=".ActivityRegistro" />
+        <activity android:name=".LugaresActivity"></activity>
     </application>
 
 </manifest>

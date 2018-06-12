@@ -50,6 +50,16 @@
                 android:layout_marginTop="8dp"
                 android:onClick="ingresarSistema"
                 android:text="Ingresar" />
+            <Button
+                android:id="@+id/btnregistrarse"
+                android:layout_width="283dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="registrarseSistema"
+                android:text="Registrar" />
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/sign_in"
