@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.proyecto.univalle.proyectomoviles.conexion.ConexionBD;
 
 public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
@@ -43,6 +48,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
     ConexionBD conexion;
     SQLiteDatabase db;
+    FirebaseAuth auth;
 
     AccountManager manager;
 
@@ -51,6 +57,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        auth=FirebaseAuth.getInstance();
         ///Componentes interfaz
         txtusername = (EditText) findViewById(R.id.txtusername);
         txtpassword = (EditText) findViewById(R.id.txtpassword);
@@ -58,7 +65,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         txtpassword.setText("admin");
 
         ///Conexion a BD para crearla o verificar que ya exista
-        conexion = new ConexionBD(this, "Proyecto", null, 1);
+       /* conexion = new ConexionBD(this, "Proyecto", null, 1);
         String DB_PATH = "/data/data/com.proyecto.univalle.proyectomoviles/databases/Proyecto";
         try {
             db = SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READONLY);
@@ -72,7 +79,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
 
             }
-        }
+        }*/
 
         ///Para el login a traves del API de Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
@@ -96,10 +103,26 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     public void ingresarSistema(View view) {
         String username = txtusername.getText().toString().trim();
         String pass = txtpassword.getText().toString().trim();
+        //Login con firebase
+        if(TextUtils.isEmpty(username)||TextUtils.isEmpty(username)){
+            Toast.makeText(getApplicationContext(),"Hay campos vacios",Toast.LENGTH_SHORT).show();
+        }else{
+            auth.signInWithEmailAndPassword(username,pass).
+                    addOnCompleteListener(ActivityLogin.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(!task.isSuccessful()){
+                        Toast.makeText(getApplicationContext(),"Usuario o email incorrectos",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent(ActivityLogin.this, LugaresActivity.class);
+                        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            });
+        }
 
-        Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
-        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
     //////////////////////////TODO LO QUE TIENE QUE VER GON GOOGLE
     public  boolean checkConnection(){
@@ -197,6 +220,13 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    public void registrarseSistema(View view) {
+        Intent intent = new Intent(ActivityLogin.this, ActivityRegistro.class);
+        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

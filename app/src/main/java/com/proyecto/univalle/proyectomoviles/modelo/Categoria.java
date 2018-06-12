@@ -6,13 +6,15 @@ public class Categoria {
     private String id;
     private String nombre;
     private String descripcion;
-    private List<Subcategoria>subcategorias;
 
-    public Categoria(String id, String nombre, String descripcion, List<Subcategoria> subcategorias) {
+    public Categoria() {
+    }
+
+    public Categoria(String id, String nombre, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.subcategorias = subcategorias;
+
     }
 
     public String getId() {
@@ -39,11 +41,5 @@ public class Categoria {
         this.descripcion = descripcion;
     }
 
-    public List<Subcategoria> getSubcategorias() {
-        return subcategorias;
-    }
 
-    public void setSubcategorias(List<Subcategoria> subcategorias) {
-        this.subcategorias = subcategorias;
-    }
 }
