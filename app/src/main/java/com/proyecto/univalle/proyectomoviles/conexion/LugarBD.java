@@ -79,12 +79,11 @@ public class LugarBD extends ConexionBD{
                     } while (fila4.moveToNext());
                 }
                 String horarioAbierto = fila.getString(5);
-                String horarioCerrado = fila.getString(6);
-                String latitud = fila.getString(7);
-                String longitud = fila.getString(8);
+                String latitud = fila.getString(6);
+                String longitud = fila.getString(7);
 
 
-                l = new Lugar(id,nombre,descripcion,fotosurl,calificacion,categoria,email,sitioweb,telefonos,horarioAbierto,horarioCerrado,latitud,longitud);
+                l = new Lugar(id,nombre,descripcion,"",fotosurl,calificacion,categoria,email,sitioweb,telefonos,horarioAbierto,latitud,longitud);
             }while (fila.moveToNext());
 
         }
@@ -146,12 +145,11 @@ public class LugarBD extends ConexionBD{
                                 } while (fila4.moveToNext());
                             }
                                 String horarioAbierto = fila.getString(5);
-                                String horarioCerrado = fila.getString(6);
-                                String latitud = fila.getString(7);
-                                String longitud = fila.getString(8);
+                                String latitud = fila.getString(6);
+                                String longitud = fila.getString(7);
 
 
-                                l = new Lugar(id,nombre,descripcion,fotosurl,calificacion,categoria,email,sitioweb,telefonos,horarioAbierto,horarioCerrado,latitud,longitud);
+                                l = new Lugar(id,nombre,descripcion,"",fotosurl,calificacion,categoria,email,sitioweb,telefonos,horarioAbierto,latitud,longitud);
                             } while (fila.moveToNext());
 
         }
@@ -165,8 +163,7 @@ public class LugarBD extends ConexionBD{
         registro.put("descripcion",l.getDescripcion());
         registro.put("calificacion",l.getCalificacion());
         registro.put("categoria",l.getCategoria().getId());
-        registro.put("horaAbierto",l.getHoraabierto());
-        registro.put("horaCerrado",l.getHoracerrado());
+        registro.put("horaAbierto",l.getHorario());
         registro.put("latitud",l.getLatitud());
         registro.put("longitud",l.getLongitud());
 

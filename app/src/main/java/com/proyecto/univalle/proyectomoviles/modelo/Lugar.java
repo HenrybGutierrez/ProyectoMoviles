@@ -13,16 +13,16 @@ public class Lugar implements Serializable {
     private List<String> email;
     private List<String> sitioweb;
     private List<String> telefonos;
-    private String horaabierto;
-    private String horacerrado;
+    private String horario;
     private String latitud;
     private String longitud;
+    private String direccion;
 
     public Lugar(){
 
     }
 
-    public Lugar(String id, String nombre, String descripcion, List<String> fotosurl, double calificacion, Categoria categoria, List<String> email, List<String> sitioweb, List<String> telefonos, String horaabierto, String horacerrado, String latitud, String longitud) {
+    public Lugar(String id, String nombre, String descripcion, String direccion, List<String> fotosurl, double calificacion, Categoria categoria, List<String> email, List<String> sitioweb, List<String> telefonos, String horario, String latitud, String longitud) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,26 +32,10 @@ public class Lugar implements Serializable {
         this.email = email;
         this.sitioweb = sitioweb;
         this.telefonos = telefonos;
-        this.horaabierto = horaabierto;
-        this.horacerrado = horacerrado;
+        this.horario = horario;
         this.latitud=latitud;
         this.longitud=longitud;
-    }
-
-    public String getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
-    public String getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
+        this.direccion=direccion;
     }
 
     public String getId() {
@@ -98,7 +82,7 @@ public class Lugar implements Serializable {
         return categoria;
     }
 
-    public void setCategoria(Categoria subcategoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -126,19 +110,35 @@ public class Lugar implements Serializable {
         this.telefonos = telefonos;
     }
 
-    public String getHoraabierto() {
-        return horaabierto;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setHoraabierto(String horaabierto) {
-        this.horaabierto = horaabierto;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
-    public String getHoracerrado() {
-        return horacerrado;
+    public String getLatitud() {
+        return latitud;
     }
 
-    public void setHoracerrado(String horacerrado) {
-        this.horacerrado = horacerrado;
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }
