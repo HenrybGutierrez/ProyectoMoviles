@@ -61,8 +61,8 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         ///Componentes interfaz
         txtusername = (EditText) findViewById(R.id.txtusername);
         txtpassword = (EditText) findViewById(R.id.txtpassword);
-        txtusername.setText("admin");
-        txtpassword.setText("admin");
+        txtusername.setText("oarp1996@hotmail.com");
+        txtpassword.setText("1234oscar");
 
         ///Conexion a BD para crearla o verificar que ya exista
        /* conexion = new ConexionBD(this, "Proyecto", null, 1);
@@ -114,7 +114,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                     if(!task.isSuccessful()){
                         Toast.makeText(getApplicationContext(),"Usuario o email incorrectos",Toast.LENGTH_SHORT).show();
                     }else{
-                        Intent intent = new Intent(ActivityLogin.this, LugaresActivity.class);
+                        Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
                         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();

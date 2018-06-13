@@ -16,7 +16,7 @@
     </group>-->
 
     <item android:title="Categorias">
-        <menu>
+        <!--<menu>
             <item
                 android:id="@+id/nav_droguerias"
                 android:icon="@drawable/ic_menu_categorias"
@@ -51,6 +51,6 @@
                 android:id="@+id/nav_iglesias"
                 android:icon="@drawable/ic_menu_categorias"
                 android:title="Iglesias" />
-        </menu>
+        </menu>-->
     </item>
 </menu>

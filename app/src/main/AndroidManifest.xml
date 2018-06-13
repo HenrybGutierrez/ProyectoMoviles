@@ -48,7 +48,12 @@
 
         <activity android:name=".InfoCategoriasActivity" />
         <activity android:name=".ActivityRegistro" />
-        <activity android:name=".LugaresActivity"></activity>
+        <activity android:name=".LugaresActivity" />
+        <activity
+            android:name=".InfoLugaresActivity"
+            android:label="@string/title_activity_info_lugares"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MapaActivity"></activity>
     </application>
 
 </manifest>

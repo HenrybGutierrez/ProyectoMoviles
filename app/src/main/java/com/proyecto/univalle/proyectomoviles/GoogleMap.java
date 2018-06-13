@@ -2,6 +2,7 @@ package com.proyecto.univalle.proyectomoviles;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +25,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.proyecto.univalle.proyectomoviles.modelo.Lugar;
+
+import java.util.ArrayList;
 
 
 /**
@@ -31,7 +35,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class GoogleMap extends Fragment implements OnMapReadyCallback {
 
-
+    double latitud, longitud;
+    String nombre, descripcion;
+    ArrayList<Lugar> datos;
     private static final int LOCATION_REQUEST_CODE = 1;
     private static final int ACCESS_FINE_LOCATION = 1;
     View rootView;
@@ -43,6 +49,11 @@ public class GoogleMap extends Fragment implements OnMapReadyCallback {
     //https://www.quora.com/How-can-I-open-map-in-map-fragment-inside-another-fragment-in-Android
     public GoogleMap() {
         // Required empty public constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public GoogleMap(ArrayList<Lugar> datos){
+        this.datos=datos;
     }
 
     @Override
@@ -99,10 +110,23 @@ public class GoogleMap extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(com.google.android.gms.maps.GoogleMap map) {
-        LatLng buga=new LatLng(3.9063467,-76.2980902);
-        LatLng miCasa=new LatLng(3.9165907, -76.2939833);
-
         this.mapaTotal=map;
+
+        LatLng buga=new LatLng(3.9063467,-76.2980902);
+        //LatLng miCasa=new LatLng(3.9165907, -76.2939833);
+
+
+        for (int i = 0; i < datos.size(); i++) {
+            LatLng lugar=new LatLng(Double.parseDouble(datos.get(i).getLatitud()), Double.parseDouble(datos.get(i).getLongitud()));
+
+            mapaTotal.addMarker(new MarkerOptions()
+                    .title(datos.get(i).getNombre())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    .snippet(datos.get(i).getDescripcion())
+                    .position(lugar));
+        }
+
+
 
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -124,19 +148,18 @@ public class GoogleMap extends Fragment implements OnMapReadyCallback {
                 Toast.makeText(getContext(),
                         point.latitude + ", " + point.longitude,
                         Toast.LENGTH_SHORT).show();
-                anadirMarca(point.latitude,point.longitude);
+                //anadirMarca(point.latitude,point.longitude);
             }
         });
 
         /*BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.univalle_icon);
         BitmapDescriptor iconUceva = BitmapDescriptorFactory.fromResource(R.drawable.uceva);*/
 
-        mapaTotal.addMarker(new MarkerOptions()
-                .title("Casa Oscar")
-                //.icon(iconUceva)
+        /*mapaTotal.addMarker(new MarkerOptions()
+                .title(nombre)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .snippet("Tienda Palacios")
-                .position(miCasa));
+                .snippet(descripcion)
+                .position(lugar));*/
 
         /*mapaTotal.addMarker(new MarkerOptions()
                 .title("Uceva")
