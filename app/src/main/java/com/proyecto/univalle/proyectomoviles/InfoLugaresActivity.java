@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class InfoLugaresActivity extends AppCompatActivity {
 
-    TextView lblTitulo,lblInfoDescripcion;
-    String nombre, descripcion, latitud, longitud;
+    TextView lblTitulo,lblInfoDescripcion, lblDireccion, lblHorario, lblInfoDireccion, lblInfoHorario;
+    String nombre, descripcion, latitud, longitud, direccion, horario;
     ArrayList<Lugar> datos;
     int id;
     ArrayList<Lugar> lugarUnico=new ArrayList<Lugar>();
@@ -44,6 +44,10 @@ public class InfoLugaresActivity extends AppCompatActivity {
 
         lblTitulo = (TextView) findViewById(R.id.lblTitulo);
         lblInfoDescripcion=(TextView)findViewById(R.id.lblInfoDescripcion);
+        lblDireccion=(TextView)findViewById(R.id.lblDireccion);
+        lblHorario=(TextView)findViewById(R.id.lblHorario);
+        lblInfoDescripcion=(TextView)findViewById(R.id.lblInfoDescripcion);
+        lblInfoHorario=(TextView)findViewById(R.id.lblInfoHorario);
 
         //Recibir datos
         datos= (ArrayList<Lugar>) getIntent().getSerializableExtra("Datos");
@@ -55,9 +59,26 @@ public class InfoLugaresActivity extends AppCompatActivity {
             descripcion = datos.get(id).getDescripcion();
             latitud = datos.get(id).getLatitud();
             longitud = datos.get(id).getLongitud();
+            direccion=datos.get(id).getDireccion();
+            horario=datos.get(id).getHorario();
 
             lblTitulo.setText(nombre);
             lblInfoDescripcion.setText(descripcion);
+
+            if(!(direccion.equals(""))){
+                lblDireccion.setText(direccion);
+            }else{
+                lblInfoDescripcion.setText("");
+            }
+
+            if(!(horario.equals(""))){
+                lblHorario.setText(horario);
+            }
+            else{
+                lblInfoHorario.setText("");
+            }
+
+
 
             lugarUnico.add(datos.get(id));
         }

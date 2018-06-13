@@ -1,5 +1,6 @@
 package com.proyecto.univalle.proyectomoviles;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +37,8 @@ public class MainActivity extends AppCompatActivity
     String nombre;
     String correo;
     String foto;
+    FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,14 @@ public class MainActivity extends AppCompatActivity
         //----------------------------------------------------------------------------------
         navigationView.setNavigationItemSelectedListener(this);
 
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null){
+            //nombre=""+currentUser.getDisplayName();
+            correo=""+currentUser.getEmail();
+            lblCorreo.setText(correo);
+        }
+
         Bundle recibo = getIntent().getExtras();
         if (recibo != null) {
             nombre = recibo.getString("nombre");
@@ -64,6 +81,14 @@ public class MainActivity extends AppCompatActivity
             lblCorreo.setText(correo);
             new LoadImage(imgFoto).execute(foto);
         }
+
+        ///Publicidad
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+        });
 
         //crearFragmentMapa();
 
@@ -97,33 +122,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_inicio) {
-            Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_categorias) {
-            Toast.makeText(this, "Categorias", Toast.LENGTH_SHORT).show();
-            //irInfoCaterogias(1);
-        } else if (id == R.id.nav_droguerias) {
-            Toast.makeText(this, "Droguerias", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(1);
-        } else if (id == R.id.nav_servicio_publico) {
-            Toast.makeText(this, "Servicio Publico", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(2);
-        } else if (id == R.id.nav_empresas_transporte) {
-            Toast.makeText(this, "Empresas de Transporte", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(3);
-        } else if (id == R.id.nav_bancos) {
-            Toast.makeText(this, "Bancos", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(4);
-        } else if (id == R.id.nav_supermercados) {
-            Toast.makeText(this, "Supermercados", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(5);
-        } else if (id == R.id.nav_parques) {
-            Toast.makeText(this, "Parques", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(6);
-        } else if (id == R.id.nav_iglesias) {
-            Toast.makeText(this, "Iglesias", Toast.LENGTH_SHORT).show();
-            irInfoCaterogias(7);
-        }*/
+        if (id == R.id.nav_inicio) {
+            //Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_acerca) {
+            //Toast.makeText(this, "Elaborado por", Toast.LENGTH_SHORT).show();
+            boolean showMessage = false;
+            String message="";
+            message="Desarrollado por:\n\nOscar Alexander Ruiz Palacio\nAndrés Felipe Medina Tascón\nJhon Henry Gutiérrez Bustos\nAndrés Felipe González Rojas\n\nUniversidad del Valle - Sede Tuluá";
+            showMessage=true;
+            if(showMessage) {
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setMessage(message);
+                alertDialog.show();
+            }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -134,7 +146,7 @@ public class MainActivity extends AppCompatActivity
         Intent ir = new Intent(MainActivity.this, PerfilActivity.class);
         ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
 
-        if (!(lblUser.getText().equals("Invitado"))) {
+        if (!(lblCorreo.getText().equals("Invitado"))) {
             Bundle bundle = new Bundle();
             bundle.putString("nombre", nombre);
             bundle.putString("correo", correo);

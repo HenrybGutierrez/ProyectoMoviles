@@ -117,6 +117,7 @@ public class GoogleMap extends Fragment implements OnMapReadyCallback {
 
 
         for (int i = 0; i < datos.size(); i++) {
+
             LatLng lugar=new LatLng(Double.parseDouble(datos.get(i).getLatitud()), Double.parseDouble(datos.get(i).getLongitud()));
 
             mapaTotal.addMarker(new MarkerOptions()

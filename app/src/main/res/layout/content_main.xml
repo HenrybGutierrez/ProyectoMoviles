@@ -9,9 +9,25 @@
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/fragmentPublicidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+
+    </FrameLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,16 +44,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verServicioPublico"
-                    app:srcCompat="@drawable/serviciopublico" />
+                    app:srcCompat="@drawable/taxi" />
 
                 <ImageButton
                     android:id="@+id/btnEmpresasTransporte"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verEmpresasTransporte"
-                    app:srcCompat="@drawable/transporte" />
+                    app:srcCompat="@drawable/bus" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,16 +90,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verBancos"
-                    app:srcCompat="@drawable/bancos" />
+                    app:srcCompat="@drawable/banco" />
 
                 <ImageButton
                     android:id="@+id/btnIglesias"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verIglesias"
-                    app:srcCompat="@drawable/iglesias" />
+                    app:srcCompat="@drawable/iglesia" />
             </LinearLayout>
 
             <LinearLayout
@@ -116,14 +136,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verDroguerias"
-                    app:srcCompat="@drawable/droguerias" />
+                    app:srcCompat="@drawable/drogueria" />
 
                 <ImageButton
                     android:id="@+id/btnParques"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verParques"
                     app:srcCompat="@drawable/parque" />
 
@@ -162,16 +184,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verSupermercados"
-                    app:srcCompat="@drawable/supermercados" />
+                    app:srcCompat="@drawable/supermercado" />
 
                 <ImageButton
                     android:id="@+id/btnComidas"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:onClick="verComidas"
-                    app:srcCompat="@drawable/comidas" />
+                    app:srcCompat="@drawable/comida" />
             </LinearLayout>
 
             <LinearLayout
@@ -200,4 +224,5 @@
         </LinearLayout>
 
     </ScrollView>
+
 </LinearLayout>

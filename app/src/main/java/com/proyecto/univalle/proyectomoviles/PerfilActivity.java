@@ -35,7 +35,6 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     public void logout(View g){
-
         Intent intent = new Intent(PerfilActivity.this, SplashActivity.class);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

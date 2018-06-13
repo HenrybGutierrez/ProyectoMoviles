@@ -61,8 +61,8 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         ///Componentes interfaz
         txtusername = (EditText) findViewById(R.id.txtusername);
         txtpassword = (EditText) findViewById(R.id.txtpassword);
-        txtusername.setText("oarp1996@hotmail.com");
-        txtpassword.setText("1234oscar");
+        //txtusername.setText("oarp1996@hotmail.com");
+        //txtpassword.setText("1234oscar");
 
         ///Conexion a BD para crearla o verificar que ya exista
        /* conexion = new ConexionBD(this, "Proyecto", null, 1);
@@ -124,6 +124,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
     //////////////////////////TODO LO QUE TIENE QUE VER GON GOOGLE
     public  boolean checkConnection(){
         Toast.makeText(this,"Verificando conexion...",Toast.LENGTH_SHORT).show();
@@ -221,6 +222,11 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
     public void registrarseSistema(View view) {
         Intent intent = new Intent(ActivityLogin.this, ActivityRegistro.class);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP | intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -228,8 +234,4 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     }
 
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 }
