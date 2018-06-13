@@ -1,5 +1,6 @@
 package com.proyecto.univalle.proyectomoviles;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -67,6 +68,14 @@ public class InfoCategoriasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int i, long l) {
                 Toast.makeText(getApplicationContext(), datos.get(i).getNombre(), Toast.LENGTH_SHORT).show();
+                Intent ir = new Intent(InfoCategoriasActivity.this, InfoLugaresActivity.class);
+                ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("Id", i);
+                ir.putExtras(bundle);
+                ir.putExtra("Datos", datos);
+                startActivity(ir);
             }
         });
 
@@ -214,5 +223,12 @@ public class InfoCategoriasActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void verTodos(View v){
+        Intent ir = new Intent(InfoCategoriasActivity.this, MapaActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        ir.putExtra("Datos", datos);
+        startActivity(ir);
     }
 }

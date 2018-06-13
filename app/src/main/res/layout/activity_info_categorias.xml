@@ -6,12 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".InfoCategoriasActivity">
 
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView" >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </ListView>
+        <Button
+            android:id="@+id/btnVer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="68dp"
+            android:layout_marginStart="68dp"
+            android:onClick="verTodos"
+            android:text="Ver Todos" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

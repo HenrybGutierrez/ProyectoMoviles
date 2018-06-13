@@ -1,8 +1,9 @@
 package com.proyecto.univalle.proyectomoviles.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Lugar {
+public class Lugar implements Serializable {
     private String id;
     private String nombre;
     private String descripcion;

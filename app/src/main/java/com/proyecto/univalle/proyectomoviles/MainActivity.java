@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
             new LoadImage(imgFoto).execute(foto);
         }
 
-        crearFragmentMapa();
+        //crearFragmentMapa();
 
         //readJson();
     }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_categorias) {
             Toast.makeText(this, "Categorias", Toast.LENGTH_SHORT).show();
             //irInfoCaterogias(1);
-        } else */if (id == R.id.nav_droguerias) {
+        } else if (id == R.id.nav_droguerias) {
             Toast.makeText(this, "Droguerias", Toast.LENGTH_SHORT).show();
             irInfoCaterogias(1);
         } else if (id == R.id.nav_servicio_publico) {
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_iglesias) {
             Toast.makeText(this, "Iglesias", Toast.LENGTH_SHORT).show();
             irInfoCaterogias(7);
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(ir);
     }
 
-    public void crearFragmentMapa() {
+    /*public void crearFragmentMapa() {
 
         if (gp instanceof GoogleMap) {
 
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
             transtion.add(R.id.fragment, gp);
             transtion.commit();
         }
-    }
+    }*/
 
     public void readJson() {
         String jsonString = IOHelper.stringFromAsset(this, "parques.json");
@@ -191,6 +191,78 @@ public class MainActivity extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void verServicioPublico(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 2);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verEmpresasTransporte(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 3);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verBancos(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 4);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verIglesias(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 7);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verDroguerias(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 1);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verParques(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 6);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verSupermercados(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 5);
+        ir.putExtras(bundle);
+        startActivity(ir);
+    }
+
+    public void verComidas(View v){
+        Intent ir = new Intent(MainActivity.this, InfoCategoriasActivity.class);
+        ir.addFlags(ir.FLAG_ACTIVITY_CLEAR_TOP | ir.FLAG_ACTIVITY_CLEAR_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putInt("Tipo", 8);
+        ir.putExtras(bundle);
+        startActivity(ir);
     }
 
     public void irInfoCaterogias(int tipoCat) {
